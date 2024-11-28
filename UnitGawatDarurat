@@ -1,0 +1,56 @@
+import java.util.Scanner;
+//EDGAR JASON HUSIN - 245150201111047
+public class UnitGawatDarurat {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        
+        String nama1 = scan.next(); int umur1 = scan.nextInt(); int saturasi1 = scan.nextInt();
+        String nama2 = scan.next(); int umur2 = scan.nextInt(); int saturasi2 = scan.nextInt();
+        String nama3 = scan.next(); int umur3 = scan.nextInt(); int saturasi3 = scan.nextInt();
+        
+        String prioritas1, prioritas2, prioritas3;
+        
+        if(saturasi1 < saturasi2 || (saturasi1==saturasi2 && umur1 > umur2)){
+            if(saturasi1 < saturasi3 || (saturasi1 == saturasi3 && umur1 > umur3)){
+                prioritas1 = nama1;
+                if(saturasi2 < saturasi3 || (saturasi2 == saturasi3 && umur2>umur3) ){
+                    prioritas2 = nama2;
+                    prioritas3 = nama3;;
+                }
+                else{
+                    prioritas2 = nama3;
+                    prioritas3 = nama2;
+                }
+            }
+            else{
+                prioritas1 = nama3;
+                prioritas2 = nama1;
+                prioritas3 = nama2;
+            }
+        }
+        else{
+            if(saturasi2 < saturasi3 || (saturasi1 == saturasi3 && umur1>umur3)){
+                prioritas1 = nama2;
+                if(saturasi1 < saturasi3 || (saturasi1 == saturasi3 && umur1>umur3)){
+                    prioritas2 = nama1;
+                    prioritas3 = nama3;
+                }
+                else{
+                    prioritas2 = nama3;
+                    prioritas3 = nama1;
+                }
+            }
+            else{
+                prioritas1 = nama3;
+                prioritas2 = nama2;
+                prioritas3 = nama1;
+            }
+        }
+        
+        System.out.println("Prioritas 1: "+prioritas1);
+        System.out.println("Prioritas 2: "+prioritas2);
+        System.out.println("Prioritas 3: "+prioritas3);
+
+
+    }
+}
