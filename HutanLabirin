@@ -1,0 +1,30 @@
+//EDGAR JASON HUSIN - 245150201111047
+
+import java.util.Scanner;
+
+public class HutanLabirin {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        
+        int X = scan.nextInt();
+        int N = scan.nextInt();
+        
+        int L = 0;
+        while(N>L){
+            if(X%2==0){
+                X /= 2;
+                L++;
+            }
+            else{
+                X *=10;
+                L++;
+            }
+            
+            if(X>1000){
+                System.out.println("Berhasil keluar pada langkah ke-"+L);
+                return;
+            }
+        }
+        System.out.println("Terjebak setelah "+N+" langkah");
+    }
+}
