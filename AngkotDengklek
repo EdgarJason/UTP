@@ -1,0 +1,84 @@
+import java.util.Scanner;
+//EDGAR JASON HUSIN - 245150201111047
+public class AngkotDengklek {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        
+        int jamMulai = scan.nextInt();
+        int jamSelesai = scan.nextInt();
+        int totalPenumpang = scan.nextInt();
+        scan.nextLine();
+        
+        int dewasa = 0;
+        int anakKecil = 0;
+        
+        for(int i = 0; i<totalPenumpang; i++){
+            String jenisPenumpang = scan.nextLine();
+            if(jenisPenumpang.equalsIgnoreCase("dewasa")){
+                dewasa++;
+            }
+            else{
+                anakKecil++;
+            }
+        }
+        
+        int durasiOperasi = jamSelesai - jamMulai;
+        if(durasiOperasi<0){
+            durasiOperasi += 24;
+        }
+        
+        int pendapatanDewasa = dewasa * 12000;
+        int pendapatanAnakKecil = anakKecil * 8000;
+        int totalPendapatan = pendapatanDewasa + pendapatanAnakKecil;
+        
+        int bensinSekarang = 20;
+        int pengeluaranBensin =0;
+        int jamSekarang = jamMulai;
+
+        for(int i = durasiOperasi; i>0; i--){
+            if(bensinSekarang == 0){
+                if(jamSekarang<12){
+                    pengeluaranBensin += 200000;
+                }
+                else if(jamSekarang<18){
+                    pengeluaranBensin += 240000;
+                }
+                else{
+                    pengeluaranBensin += 220000;
+                }
+                bensinSekarang = 20;
+            }
+            bensinSekarang -=2;
+            jamSekarang = (jamSekarang +1)%24;
+            
+        }
+        
+        int sisaBensin = 20-bensinSekarang;
+        if(jamSekarang <12){
+            pengeluaranBensin += sisaBensin * 10000;
+        }
+        else if(jamSekarang < 18){
+            pengeluaranBensin += sisaBensin * 12000;
+        }
+        else{
+            pengeluaranBensin += sisaBensin * 11000;
+        }
+        
+        int keuntungan = totalPendapatan - pengeluaranBensin;
+        
+        System.out.printf("""
+        Durasi operasi              : %d jam
+        Jumlah penumpang dewasa     : %d orang
+        Jumlah penumpang anak kecil : %d orang
+        Total pendapatan            : Rp%d.00,-
+        Pengeluaran bensin          : Rp%d.00,-
+        """,durasiOperasi,dewasa,anakKecil,totalPendapatan,pengeluaranBensin);
+        if(keuntungan >= 0){
+            System.out.println("Pak Dengklek mendapat keuntungan sebesar Rp"+keuntungan+".00,-");
+        }
+        else{
+            System.out.println("Pak Dengklek mengalami kerugian sebesar Rp"+(-keuntungan)+".00,-");
+        }
+        
+    }
+}
